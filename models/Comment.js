@@ -36,7 +36,6 @@ const ReplySchema = new Schema(
       },
       commentBody: {
         type: String
-        required: 'write a comment!!',
       },
       createdAt: {
         type: Date,
