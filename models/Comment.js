@@ -2,30 +2,32 @@ const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const ReplySchema = new Schema(
-    {
-      // set custom id to avoid confusion with parent comment's _id field
-      replyId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-      },
-      replyBody: {
-        type: String
-      },
-      writtenBy: {
-        type: String
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: createdAtVal => dateFormat(createdAtVal)
-      }
+  {
+    // set custom id to avoid confusion with parent comment _id
+    replyId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId()
     },
-    {
-      toJSON: {
-        getters: true
-      }
+    replyBody: {
+      type: String,
+      required: true
+    },
+    writtenBy: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => dateFormat(createdAtVal)
     }
-  );
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+);
 
   const CommentSchema = new Schema(
     {
@@ -34,9 +36,11 @@ const ReplySchema = new Schema(
       },
       commentBody: {
         type: String
+        required: 'write a comment!',
       },
       createdAt: {
         type: Date,
+        required: true,
         default: Date.now,
         get: createdAtVal => dateFormat(createdAtVal)
       },
