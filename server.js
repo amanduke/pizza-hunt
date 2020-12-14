@@ -21,4 +21,4 @@ app.use(require('./routes'));
 
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
 
-app.listen(process.env.PORT || 3001);
+
